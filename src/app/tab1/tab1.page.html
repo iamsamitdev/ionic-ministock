@@ -1,17 +1,92 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Tab 1
+     Home
     </ion-title>
   </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="segnav">
+      <ion-segment-button value="stocks">
+        <ion-label>Stocks</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="orders">
+        <ion-label>Orders</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="invoices">
+        <ion-label>Invoices</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!--
+  <h1>Home page</h1>
+  <p>สวัสดี {{ firstName }}</p>
+
+  <h2>ข้อมูลสมาชิกคือ</h2>
+  <p>ชื่อ {{ person.fullname }}</p>
+  <p>อายุ {{ person.age }}</p>
+  <p>เพศ {{ person.gender }}</p>
+  <p>น้ำหนัก {{ person.weight }}</p>
+
+  <h2>ข้อมูลสินค้า</h2>
+  <p>{{ productData | json }}</p>
+
+  <h2>Form Add product</h2>
+  <p>Name: <input type="text" name="name" id="name" [(ngModel)]="product.name"></p>
+  <p>Price: <input type="text" name="price" id="price" [(ngModel)]="product.price"></p>
+  <p>Qty: <input type="text" name="qty" id="qty" [(ngModel)]="product.qty"></p>
+  <p>{{ product | json }}</p>
+  -->
+  <div [ngSwitch]="segnav">
+    <div *ngSwitchCase="'stocks'">
+
+      <!-- Slide-->
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+          <img src="assets/img/slide_1.jpg" alt="">
+        </ion-slide>
+        <ion-slide>
+          <img src="assets/img/slide_2.jpeg" alt="">
+        </ion-slide>
+        <ion-slide>
+          <img src="assets/img/slide_3.png" alt="">
+        </ion-slide>
+      </ion-slides>
+      
+      <!-- Product List-->
+      <ion-list>
+        <ion-list-header>
+          <h2>Product Lists</h2>
+        </ion-list-header>
+        <ion-item *ngFor='let key of  [1,2,3,4,5]'>
+          <ion-avatar slot="start">
+            <img src="assets/img/p1.jpg">
+          </ion-avatar>
+          <ion-label>
+            <h2>Shpping Bag</h2>
+            <h3>New model shopping bag</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis...</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+    </div>
+    <div *ngSwitchCase="'orders'">
+      Orders Content...
+    </div>
+    <div *ngSwitchCase="'invoices'">
+      Invoice Content...
+    </div>
+  </div>
+
 </ion-content>
